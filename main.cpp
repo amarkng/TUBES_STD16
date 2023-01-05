@@ -87,7 +87,6 @@ int main()
             char mhsss[50];
             string nimMhs;
             cout<<"Nama Mahasiswa yang akan dicari : ";
-            cin.ignore();
             cin.getline(mhsss,50);
             cout<<"NIM Mahasiswa yang akan dicari : ";
             cin>>nimMhs;
