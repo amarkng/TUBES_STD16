@@ -2,9 +2,9 @@
 #include <string>
 #include "lulus.h"
 
-
 int main()
 {
+    //Parent
     listMhs LM;
     createListMhs(LM);
     infotypeMhs ifMhs;
@@ -12,13 +12,14 @@ int main()
     string nim,kelas;
     int nilai,poin;
     int i = 1;
-    //
+
+    //Child
     listSts LS;
     createListSts(LS);
     infotypeSts ifSts;
     string lulus,bermasalah;
     int n = 1;
-    //
+    //Tambahan
     int pilihan,jmlhMhs,jmlhSts;
     char backtomenu;
 
@@ -26,7 +27,7 @@ int main()
     cout<<endl;
     while(pilihan != 0){
         switch(pilihan){
-        case 1:
+        case 1:{
             system("CLS");
             cout<<"Berapa Data Mahasiswa Yang Akan Anda Masukkan ? " ;
             cin >> jmlhMhs;
@@ -49,76 +50,130 @@ int main()
                 i++;
                 cout<<endl;
             }
-            break;
-        case 2:
+            }break;
+        case 2:{
             system("CLS");
-            cout<<"Berapa Kategori Kelulusan Yang Akan Anda Masukkan ? " ;
             n = 1 ;
-            cin >> jmlhSts;
-            while(n <= jmlhSts ){
+            string lulus2,bermasalah2;
+            cout<<"Masukkan 4 Kategori Kelulusan : " <<endl;
+            //cout<<"Berapa Kategori Kelulusan Yang Akan Anda Masukkan ? " ;
+            //cin >> jmlhSts;
+            while(n <= 4 ){
                 cout << "> Kategori Kelulusan ke-"<<n<<endl;
-                cout<<"Lulus/Tidak Lulus : ";
-                cin>>lulus;
-                cout<<"Bermasalah/Tidak Bermasalah : ";
-                cin>>bermasalah;
-                ifSts = newStatus(lulus,bermasalah);
+                cout<<"Lulus/TidakLulus/t/t:";
+                cin>>lulus2;
+                cout<<"Bermasalah/TidakBermasalah/t:";
+                cin>>bermasalah2;
+                ifSts = newStatus(lulus2,bermasalah2);
                 adrSts S = createElemenSts(ifSts);
                 insertLastSts(LS,S);
                 n++;
                 cout<<endl;
             }
-            break;
+            }break;
         case 3:
             system("CLS");
             showAllMhs(LM);
 
             break;
         case 4:
-            system("CLS") ;
+            system("CLS");
             connecting(LM,LS);
-            cout<<"Proses Berhasil Dilakukan ! ";
             break;
         case 5:
             //menampilkan seluruh parent dan child yg sudah terkonek
+            system("CLS");
             showAll(LM);
             break;
         case 6:{
             //cari data parent
-            char mhsss[50];
+            system("CLS");
+            char nama6[50];
             cout<<"Nama Mahasiswa yang akan dicari : ";
-            cin.getline(mhsss,50);
-            adrMhs P = searchParent(LM, mhsss);
+            cin.ignore();
+            cin.getline(nama6,50);
+            adrMhs P = searchParent(LM, nama6);
 
             if(P!=NULL){
-                cout<<"Berikut Data Mahasiswa : "<<endl;
+                cout<<"Berikut Data Mahasiswa Tersebut"<<endl;
                 cout<<"Nama Mahasiswa : "<<infoMhs(P).namaMhs<<endl;
                 cout<<"NIM Mahasiswa : "<<infoMhs(P).nimMhs<<endl;
                 cout<<"Kelas Mahasiswa : "<<infoMhs(P).kelasMhs<<endl;
                 cout<<"Nilai Mahasiswa : "<<infoMhs(P).nilai<<endl;
                 cout<<"Poin Mahasiswa : "<<infoMhs(P).poin<<endl;
+                if(child(P) != NULL){
+                    adrSts Q = child(P);
+                    cout<<"Status Kelulusan :" << infoSts(Q).lulus<< " dan " <<infoSts(Q).bermasalah<<endl;
+                }else{
+                    cout<<"Status Kelulusan : - " <<endl;
+                }
             }else{
                 cout<<endl;
                 cout<<"Mahasiswa Tersebut Tidak Terdaftar";
-
             }
             }break;
         case 7:{
             //cari data child pada parent tertentu
-            showchild(LS);
-            cout<<"sc";
+            system("CLS");
+            adrSts SS;
+            char nama7 [50];
+
+            cout<<"Masukkan Nama Mahasiswa : ";
+            cin.ignore();
+            cin.getline(nama7,50);
+            SS = searchChildOnParent(LM,nama7);
+            if(SS != NULL){
+                cout<<"Status Kelulusan Mahasiswa "<<nama7<<" : ";
+                cout << infoSts(SS).lulus << " dan "<<infoSts(SS).bermasalah<<endl;
+            }else{
+                cout<<"Belum Ada Status Kelulusan !" << endl;
+            }
             }break;
-        case 8:
+        case 8:{
             //menghapus data parent dan childnya
-            cout<<"";
-            break;
-        case 9:
+            system("CLS");
+            char nama8[50];
+            adrMhs M;
+
+            cout<<"Masukkan Nama Mahasiswa Yang Akan Dihapus Dari Data : ";
+            cin.ignore();
+            cin.getline(nama8,50);
+            deleteDataMhs(LM,M,nama8);
+            }break;
+        case 9:{
             //menghapus data child pada parent tertentu
-            cout<<"";
-            break;
-        case 10:
+            system("CLS");
+            string nama9;
+            int nilai9;
+
+            cout<<"Masukkan Nama Mahasiswa yang akan diperbarui nilainya : ";
+            cin>>nama9;
+            deleteChildonParent(LM,nama9);
+            cout<<endl;
+            if(searchParent(LM, nama9) != NULL){
+                cout<<"Nilai terbaru : ";
+                cin>>nilai9;
+                updateNilai(LM, nama9, nilai9);
+            }
+            }break;
+        case 10:{
             //jumlah child pada parent tertentu
-            cout<<"";
-            break;
+            system("CLS");
+            string lulus10,bermasalah10;
+
+            cout<<"Masukkan Kategori Kelulusan nya  "<<endl;
+            cout<<"Lulus/TidakLulus : ";
+            cin>>lulus10;
+            cout<<"Bermasalah/TidakBermasalah: ";
+            cin>>bermasalah10;
+            cout<<endl;
+            if(counting(LM,LS,lulus10,bermasalah10) > 0){
+                cout<<"Jumlah Mahasiswa Yang " << lulus10 << " dan " << bermasalah10 <<" : " << counting(LM,LS,lulus10,bermasalah10)<<" Mahasiswa"<<endl;
+            }else{
+                cout<<"Belum Ada Mahasiswa Yang Masuk Ke Kategori Tersebut!"<<endl;
+            }
+            //cout<<"Jumlah Mahasiswa Yang "<< lulus10 <<" dan "<< bermasalah10 <<counting(LM,LS,lulus10,bermasalah10)<<" Mahasiswa";
+            }break;
         }
         cout<<endl;
         cout<<"Kembali Ke Menu Utama ? (Y/N) : ";
