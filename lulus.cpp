@@ -268,14 +268,8 @@ void deleteChildonParent(listMhs &L, listSts &LS, adrSts &P, string namaMhs){
         cout<<"List kosong!"<<endl;
     }else{
         if(child(Q) != NULL){
-            P = child(Q);
+            child(Q) = NULL;
         }
-        prec = firstSts(LS);
-        while(nextSts(nextSts(prec)) != P){
-            prec = nextSts(prec);
-        }
-        nextSts(prec) = nextSts(P);
-        nextSts(P) = NULL;
     }
 }
 
