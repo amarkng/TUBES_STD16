@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1584205420 source:d:\lazuardi\kuliah\semester 3\strukdat\tubes_kelompok16\main.cpp
+	<iostream>
+
+1672461227 source:d:\lazuardi\kuliah\semester 3\strukdat\tubes_kelompok16\lulus.cpp
+	"lulus.h"
+
+1672461378 d:\lazuardi\kuliah\semester 3\strukdat\tubes_kelompok16\lulus.h
+	<iostream>
+
+1672853605 source:d:\.perkuliahan\semester 3\struktur data\-tubes\tubes_kelompok16 (2)\tubes_kelompok16\lulus.cpp
+	"lulus.h"
+
+1672852719 d:\.perkuliahan\semester 3\struktur data\-tubes\tubes_kelompok16 (2)\tubes_kelompok16\lulus.h
+	<iostream>
+	<string>
+
+1672853282 source:d:\.perkuliahan\semester 3\struktur data\-tubes\tubes_kelompok16 (2)\tubes_kelompok16\main.cpp
+	<iostream>
+	<string>
+	"lulus.h"
+
+1672886739 source:e:\~alauddin\codes\codeblocks\tubesrama\lulus.cpp
+	"lulus.h"
+
+1672882659 e:\~alauddin\codes\codeblocks\tubesrama\lulus.h
+	<iostream>
+	<string>
+
+1672885183 source:e:\~alauddin\codes\codeblocks\tubesrama\main.cpp
+	<string>
+	"lulus.h"
+
+1672886740 source:d:\.perkuliahan\semester 3\struktur data\-tubes\tubesrama\tubesrama\lulus.cpp
+	"lulus.h"
+
+1672882660 d:\.perkuliahan\semester 3\struktur data\-tubes\tubesrama\tubesrama\lulus.h
+	<iostream>
+	<string>
+
+1672885184 source:d:\.perkuliahan\semester 3\struktur data\-tubes\tubesrama\tubesrama\main.cpp
+	<string>
+	"lulus.h"
+
