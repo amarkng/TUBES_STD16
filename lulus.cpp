@@ -269,18 +269,19 @@ void insertLastSts(listSts &LS, adrSts P){
     }
 }
 
-bool searchChildOnParent(listMhs &L, listSts &LS, string lulus, string bermasalah, string namaMhs){
-    bool kondisi = false;
+adrSts searchChildOnParent(listMhs &L,string namaMhs){
     adrMhs P = searchParent(L, namaMhs);
-    adrSts Q = searchSts(LS, lulus,bermasalah);
-    if(P != NULL && Q != NULL){
+    adrSts prec;
+    if(P == NULL){
+        cout<<" Data tidak ditemukan"<<endl;
+    }else{
         if(child(P) != NULL){
-            if(child(P) == Q){
-                kondisi = true;
-            }
+            prec = child(P);
+        }else{
+            return NULL;
         }
+        return prec;
     }
-    return kondisi;
 }
 
 void deleteChildonParent(listMhs &L, string namaMhs){
