@@ -85,12 +85,9 @@ int main()
         case 6:{
             //cari data parent
             char mhsss[50];
-            string nimMhs;
             cout<<"Nama Mahasiswa yang akan dicari : ";
             cin.getline(mhsss,50);
-            cout<<"NIM Mahasiswa yang akan dicari : ";
-            cin>>nimMhs;
-            adrMhs P = searchParent(LM, mhsss, nimMhs);
+            adrMhs P = searchParent(LM, mhsss);
 
             if(P!=NULL){
                 cout<<"Berikut Data Mahasiswa : "<<endl;
