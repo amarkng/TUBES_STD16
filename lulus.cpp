@@ -284,16 +284,17 @@ adrSts searchChildOnParent(listMhs &L,string namaMhs){
     }
 }
 
-void deleteChildonParent(listMhs &L, string namaMhs){
+void deleteChildonParent(listMhs &L, adrSts &P, string namaMhs){
     adrMhs Q = searchParent(L, namaMhs);
     if(isEmpty(L)){
         cout<<"List kosong!"<<endl;
-    }else if(Q == NULL){
-        cout<<"Data tidak ditemukan"<<endl;
     }else{
         if(child(Q) != NULL){
             child(Q) = NULL;
+        }else{
+        cout<<"Data tidak Ditemukan"<<endl;
         }
+
     }
 }
 
