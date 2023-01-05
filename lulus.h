@@ -20,7 +20,7 @@ struct mahasiswa{
 
 struct status{
     string lulus;
-    string bermasalah ;
+    string bermasalah;
 };
 
 typedef mahasiswa infotypeMhs;
@@ -60,24 +60,28 @@ infotypeSts newStatus(string lulus, string bermasalah);
 bool isEmpty(listMhs &L);
 bool isOne(listMhs &L);
 void insertFirstMhs(listMhs &L, adrMhs P);
+void deleteFirstMhs(listMhs &L, adrMhs &P);
+void deleteLastMhs(listMhs &L, adrMhs &P);
 void showAllMhs(listMhs &L);
 void deleteDataMhs(listMhs &L,adrMhs &P, string namaMhs);
 adrMhs searchParent(listMhs &L, string namaMhs);
 void connecting(listMhs &L, listSts &LS);
 void showAll(listMhs L);
 int Menu();
-void deleteFirstMhs(listMhs &L, adrMhs &P);
-void deleteLastMhs(listMhs &L, adrMhs &P);
+void deleteMhs(listMhs &L, adrMhs &P);
 
-adrSts searchChildOnParent(listMhs &L,string namaMhs)
+adrSts searchChildOnParent(listMhs &L,string namaMhs);
 void createListSts(listSts &LS);
 adrSts createElemenSts(infotypeSts x);
 adrSts searchSts(listSts LS, string lulus, string bermasalah);
 void insertLastSts(listSts &LS, adrSts P);
-void deleteChildonParent(listMhs &L, adrSts &P, string namaMhs);
+void deleteChildonParent(listMhs &L,string namaMhs);
 void deleteFirstSts(listSts &LS, adrSts &P);
 void deleteAfterSts(listSts &LS, adrSts &P, string lulus, string bermasalah);
 void deleteLastSts(listSts &LS, adrSts &P);
 
+int counting(listMhs &L, listSts &LS, string lulus, string bermasalah);
+
 void showchild(listSts LS);
+void updateNilai(listMhs &L, string namaMhs, int nilai);
 #endif // LULUS_H_INCLUDED
