@@ -68,7 +68,8 @@ void showAll(listMhs L);
 int Menu();
 void deleteMhs(listMhs &L, adrMhs &P);
 
-bool searchChildOnParent(listMhs &L, listSts &LS, string lulus, string bermasalah, string nama);
+
+adrSts searchChildOnParent(listMhs &L,string namaMhs)
 void createListSts(listSts &LS);
 adrSts createElemenSts(infotypeSts x);
 adrSts searchSts(listSts LS, string lulus, string bermasalah);
