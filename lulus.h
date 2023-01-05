@@ -61,7 +61,7 @@ bool isEmpty(listMhs &L);
 bool isOne(listMhs &L);
 void insertFirstMhs(listMhs &L, adrMhs P);
 void showAllMhs(listMhs &L);
-void deleteData(listMhs &L, adrMhs &P, adrSts &Q);
+void deleteDataMhs(listMhs &L,adrMhs &P, string namaMhs);
 adrMhs searchParent(listMhs &L, string namaMhs);
 void connecting(listMhs &L, listSts &LS);
 void showAll(listMhs L);
