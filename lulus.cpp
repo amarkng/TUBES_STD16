@@ -70,12 +70,34 @@ void showAllMhs(listMhs &L){
 
 void deleteData(listMhs &L,listSts &LS, string lulus, string bermasalah, adrMhs &P, adrSts &Q){
     adrSts X = searchSts(LS, lulus, bermasalah);
+    adrMhs prec = firstMhs(L);
     if(isEmpty(L)){
         cout<<"List Kosong!"<<endl;
-    }else if(isOne(L)){
-        if(child(firstMhs(L)) == X){
-
+    }else {
+        while(nextMhs(prec) != NULL){
+            if(child(firstMhs(L)) == X){
+                child(firstMhs(L)) = NULL;
+                deleteFirstMhs(L, P);
+            }
+            prec = nextMhs(prec);
+            if(child(nextMhs(prec)) != X){
+                P = nextMhs(prec);
+                nextMhs(prec) = nextMhs(P);
+            }
         }
+        if(child(nextMhs(prec)) == X){
+            P = nextMhs(prec);
+            child(P) = NULL;
+            deleteLastMhs(L, P);
+        }
+        if(X == firstSts(LS)){
+            deleteFirstSts(LS, Q);
+        }else if(nextSts(X) == NULL){
+            deleteLastSts(LS, Q);
+        }else{
+            deleteAfterSts(LS, Q, lulus, bermasalah);
+        }
+
     }
 }
 
