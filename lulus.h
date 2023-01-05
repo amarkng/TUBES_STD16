@@ -74,7 +74,7 @@ void createListSts(listSts &LS);
 adrSts createElemenSts(infotypeSts x);
 adrSts searchSts(listSts LS, string lulus, string bermasalah);
 void insertLastSts(listSts &LS, adrSts P);
-void deleteChildonParent(listMhs &L, listSts &LS, adrSts &P, string namaMhs);
+void deleteChildonParent(listMhs &L, adrSts &P, string namaMhs);
 void deleteFirstSts(listSts &LS, adrSts &P);
 void deleteAfterSts(listSts &LS, adrSts &P, string lulus, string bermasalah);
 void deleteLastSts(listSts &LS, adrSts &P);
