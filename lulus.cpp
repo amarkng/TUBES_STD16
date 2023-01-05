@@ -68,37 +68,26 @@ void showAllMhs(listMhs &L){
     }
 }
 
-void deleteData(listMhs &L,listSts &LS, string lulus, string bermasalah, adrMhs &P, adrSts &Q){
-    adrSts X = searchSts(LS, lulus, bermasalah);
+void deleteDataMhs(listMhs &L,adrMhs &P, string namaMhs){
+    adrMhs Q = searchParent(L, namaMhs);
     adrMhs prec = firstMhs(L);
-    if(isEmpty(L)){
-        cout<<"List Kosong!"<<endl;
-    }else {
-        while(nextMhs(prec) != NULL){
-            if(child(firstMhs(L)) == X){
-                child(firstMhs(L)) = NULL;
-                deleteFirstMhs(L, P);
-            }
-            prec = nextMhs(prec);
-            if(child(nextMhs(prec)) != X){
-                P = nextMhs(prec);
-                nextMhs(prec) = nextMhs(P);
-            }
-        }
-        if(child(nextMhs(prec)) == X){
-            P = nextMhs(prec);
-            child(P) = NULL;
+    if(Q == NULL){
+        cout<<"Data tidak ditemukan"<<endl;
+    }else{
+        if(Q == firstMhs(L)){
+            deleteFirstMhs(L, P);
+        }else if(nextMhs(Q) == NULL){
             deleteLastMhs(L, P);
-        }
-        if(X == firstSts(LS)){
-            deleteFirstSts(LS, Q);
-        }else if(nextSts(X) == NULL){
-            deleteLastSts(LS, Q);
         }else{
-            deleteAfterSts(LS, Q, lulus, bermasalah);
+            while(nextMhs(nextMhs(prec)) != Q){
+                prec = nextMhs(prec);
+            }
+            P = nextMhs(prec);
+            nextMhs(prec) = nextMhs(P);
+            nextMhs(P) = NULL;
         }
-
     }
+
 }
 
 adrMhs searchParent(listMhs &L, string namaMhs){
