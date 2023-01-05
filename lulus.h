@@ -66,8 +66,8 @@ adrMhs searchParent(listMhs &L, string namaMhs);
 void connecting(listMhs &L, listSts &LS);
 void showAll(listMhs L);
 int Menu();
-void deleteMhs(listMhs &L, adrMhs &P);
-
+void deleteFirstMhs(listMhs &L, adrMhs &P);
+void deleteLastMhs(listMhs &L, adrMhs &P);
 
 adrSts searchChildOnParent(listMhs &L,string namaMhs)
 void createListSts(listSts &LS);
