@@ -51,7 +51,7 @@ void insertFirstMhs(listMhs &L, adrMhs P){
 
 void showAllMhs(listMhs &L){
     if(firstMhs(L) == NULL){ //diganti awalnya pake isEmpty
-        cout<<"List Kosong!"<<endl;
+        cout<<"Data Mahasiswa Masih Kosong!"<<endl;
     }else{
         adrMhs P;
         P = firstMhs(L);
@@ -68,6 +68,37 @@ void showAllMhs(listMhs &L){
     }
 }
 
+void deleteFirstMhs(listMhs &L, adrMhs &P){
+    if(isEmpty(L)){
+        cout<<"List Kosong!"<<endl;
+    }else if(isOne(L)){
+        P = firstMhs(L);
+        firstMhs(L) = NULL;
+    }else{
+        P = firstMhs(L);
+        firstMhs(L) = nextMhs(P);
+        P = NULL;
+    }
+}
+
+
+void deleteLastMhs(listMhs &L, adrMhs &P){
+    adrMhs prec;
+    if(isEmpty(L)){
+        cout<<"List Kosong"<<endl;
+    }else if(isOne(L)){
+        P = firstMhs(L);
+        firstMhs(L) = NULL;
+    }else{
+        prec = firstMhs(L);
+        while(nextMhs(nextMhs(prec)) != NULL){
+            prec = nextMhs(prec);
+        }
+        P = nextMhs(prec);
+        nextMhs(prec) = NULL;
+    }
+}
+
 void deleteDataMhs(listMhs &L,adrMhs &P, string namaMhs){
     adrMhs Q = searchParent(L, namaMhs);
     adrMhs prec = firstMhs(L);
@@ -79,7 +110,7 @@ void deleteDataMhs(listMhs &L,adrMhs &P, string namaMhs){
         }else if(nextMhs(Q) == NULL){
             deleteLastMhs(L, P);
         }else{
-            while(nextMhs(nextMhs(prec)) != Q){
+            while(nextMhs(prec) != Q){
                 prec = nextMhs(prec);
             }
             P = nextMhs(prec);
@@ -91,24 +122,16 @@ void deleteDataMhs(listMhs &L,adrMhs &P, string namaMhs){
 }
 
 adrMhs searchParent(listMhs &L, string namaMhs){
-    adrMhs prec;
-    adrMhs P;
-    if(isEmpty(L)){
-        cout<<"List kosong!"<<endl;
-    }else{
-        prec = firstMhs(L);
-        while(prec != NULL){
-            if(infoMhs(prec).namaMhs == namaMhs){
-                P = prec;
-                break;
-            }
-            prec = nextMhs(prec);
+    adrMhs prec = firstMhs(L);
+    prec = firstMhs(L);
+    while(prec != NULL){
+        if(infoMhs(prec).namaMhs == namaMhs){
+            return prec;
         }
+        prec = nextMhs(prec);
     }
-    if(prec != NULL){
-        return P;
-    }else{
-        return NULL;
+    if(prec == NULL){
+        return prec;
     }
 }
 
@@ -116,13 +139,13 @@ adrSts searchSts(listSts LS, string lulus, string bermasalah){
     adrSts P;
     adrSts prec;
     if(firstSts(LS) == NULL){
-        cout<<"List Kosong!"<<endl;
+        return NULL;
     }else{
         prec = firstSts(LS);
         while (prec != NULL && (infoSts(prec).lulus != lulus || infoSts(prec).bermasalah != bermasalah)){
 
-            cout <<infoSts(prec).lulus ;
-            cout <<infoSts(prec).bermasalah ;
+            //cout <<infoSts(prec).lulus ;
+            //cout <<infoSts(prec).bermasalah ;
             //cout <<"HOPP" << endl;
             prec = nextSts(prec);
         }
@@ -132,8 +155,8 @@ adrSts searchSts(listSts LS, string lulus, string bermasalah){
         }
     }
     if(prec != NULL){
-        cout <<infoSts(P).lulus ;
-        cout <<infoSts(P).bermasalah ;
+        //cout <<infoSts(P).lulus ;
+        //cout <<infoSts(P).bermasalah ;
         cout << endl ;
         return P;
     }else{
@@ -149,28 +172,27 @@ void connecting(listMhs &L, listSts &LS){
     TT = searchSts(LS, "TidakLulus", "TidakBermasalah");
     TB = searchSts(LS, "TidakLulus", "Bermasalah");
 
-    if(firstMhs(L) == NULL){
-        cout<<"List Kosong"<<endl;
+    if(isEmpty(L)){
+        cout<<"Harap Masukkan Data Mahasiswa Beserta Kategori Kelulusan Terlebih Dahulu ! "<<endl;
     }else{
-        cout<<"TESS";
         while(prec != NULL){
             if(infoMhs(prec).nilai >= 40 && infoMhs(prec).poin < 50){
                 child(prec) = LT;
-                cout<<"JAHIM1";
+
             }else if(infoMhs(prec).nilai >= 40 && infoMhs(prec).poin >= 50){
                 child(prec) = LB;
-                cout<<"JAHIM2";
+
             }else if(infoMhs(prec).nilai < 40 && infoMhs(prec).poin < 50){
                 child(prec) = TT;
-                cout<<prec;
+
             }else if(infoMhs(prec).nilai < 40 && infoMhs(prec).poin >= 50){
                 child(prec) = TB;
-                cout<<"JAHIM4";
+
             }
-            cout<<"BOLA";
+
             prec = nextMhs(prec);
         }
-        cout << "TESTER" ;
+        cout<<"Proses Berhasil Dilakukan ! ";
     }
 }
 
@@ -187,7 +209,7 @@ void showchild(listSts LS){
 void showAll(listMhs L){
     adrSts Q;
     if(isEmpty(L)){
-        cout<<"List Kosong"<<endl;
+        cout<<"Harap Masukkan Data Mahasiswa Beserta Kategori Kelulusan Terlebih Dahulu ! "<<endl;
     }else{
         adrMhs P = firstMhs(L);
         while(P != NULL){
@@ -206,17 +228,20 @@ void showAll(listMhs L){
         }
     }
 }
+
+
+
 int Menu(){ //diganti lagi hei
     cout << "=========MENU=========" << endl;
     cout << "1. Menambah Data Mahasiswa" << endl;
     cout << "2. Menambah Data Kategori Kelulusan" << endl;
     cout << "3. Menampilkan Data Mahasiswa" << endl;
     cout << "4. Melakukan Proses connect " << endl;
-    cout << "5. Menampilkan Seluruh Data Mahasiswa Beserta Kategori Kelulusan (belum)" << endl;
+    cout << "5. Menampilkan Seluruh Data Mahasiswa Beserta Kategori Kelulusan" << endl;
     cout << "6. Mencari Data Mahasiswa" << endl;
     cout << "7. Mencari Data Kategori Kelulusan Dari Data Mahasiswa" << endl;
     cout << "8. Menghapus Data Mahasiswa Beserta Kategorinya" << endl;
-    cout << "9. Menghapus Data Kategori Kelulusan Dari Data Mahasiswa" << endl;
+    cout << "9. Mengganti Nilai Mahasiswa" << endl;
     cout << "10.Menghitung Ada Berapa Mahasiswa Yang Termasuk Pada Kategori Tertentu" << endl;
     cout<<endl;
     cout << "0. Keluar Dari Program" <<endl;
@@ -262,7 +287,8 @@ adrSts searchChildOnParent(listMhs &L,string namaMhs){
     adrMhs P = searchParent(L, namaMhs);
     adrSts prec;
     if(P == NULL){
-        cout<<" Data tidak ditemukan"<<endl;
+        cout<<"Mahasiswa Tidak Ada dan ";
+        return NULL;
     }else{
         if(child(P) != NULL){
             prec = child(P);
@@ -273,15 +299,15 @@ adrSts searchChildOnParent(listMhs &L,string namaMhs){
     }
 }
 
-void deleteChildonParent(listMhs &L, adrSts &P, string namaMhs){
+void deleteChildonParent(listMhs &L,string namaMhs){
     adrMhs Q = searchParent(L, namaMhs);
     if(isEmpty(L)){
-        cout<<"List kosong!"<<endl;
+        cout<<"Data Mahasiswa Masih Kosong !"<<endl;
     }else{
         if(child(Q) != NULL){
             child(Q) = NULL;
         }else{
-        cout<<"Data tidak Ditemukan"<<endl;
+        cout<<"Mahasiswa Belum Memiliki Status Kelulusan"<<endl;
         }
 
     }
@@ -302,7 +328,7 @@ int counting(listMhs &L, listSts &LS, string lulus, string bermasalah){
             }
         }
     }
-    return total;
+    return total ;
 }
 
 void deleteFirstSts(listSts &LS, adrSts &P){
@@ -318,7 +344,7 @@ void deleteFirstSts(listSts &LS, adrSts &P){
     }
 }
 
-void deleteAfterSts(listSts &LS, string lulus, string bermasalah, adrSts &P){
+void deleteAfterSts(listSts &LS,adrSts &P, string lulus, string bermasalah){
     adrSts Q = searchSts(LS, lulus, bermasalah);
     adrSts prec;
     if(firstSts(LS) == NULL){
@@ -356,34 +382,11 @@ void deleteLastSts(listSts &LS, adrSts &P){
     }
 }
 
-
-void deleteFirstMhs(listMhs &L, adrMhs &P){
-    if(isEmpty(L)){
-        cout<<"List Kosong!"<<endl;
-    }else if(isOne(L)){
-        P = firstMhs(L);
-        firstMhs(L) = NULL;
+void updateNilai(listMhs &L, string namaMhs, int nilai){
+    adrMhs P = searchParent(L, namaMhs);
+    if(P == NULL){
+        cout<<"Data tidak ditemukan"<<endl;
     }else{
-        P = firstMhs(L);
-        firstMhs(L) = nextMhs(P);
-        P = NULL;
-    }
-}
-
-
-void deleteLastMhs(listMhs &L, adrMhs &P){
-    adrMhs prec;
-    if(isEmpty(L)){
-        cout<<"List Kosong"<<endl;
-    }else if(isOne(L)){
-        P = firstMhs(L);
-        firstMhs(L) = NULL;
-    }else{
-        prec = firstMhs(L);
-        while(nextMhs(nextMhs(prec)) != NULL){
-            prec = nextMhs(prec);
-        }
-        P = nextMhs(prec);
-        nextMhs(prec) = NULL;
+        infoMhs(P).nilai = nilai;
     }
 }
