@@ -365,3 +365,35 @@ void deleteLastSts(listSts &LS, adrSts &P){
         nextSts(prec) = NULL;
     }
 }
+
+
+void deleteFirstMhs(listMhs &L, adrMhs &P){
+    if(isEmpty(L)){
+        cout<<"List Kosong!"<<endl;
+    }else if(isOne(L)){
+        P = firstMhs(L);
+        firstMhs(L) = NULL;
+    }else{
+        P = firstMhs(L);
+        firstMhs(L) = nextMhs(P);
+        P = NULL;
+    }
+}
+
+
+void deleteLastMhs(listMhs &L, adrMhs &P){
+    adrMhs prec;
+    if(isEmpty(L)){
+        cout<<"List Kosong"<<endl;
+    }else if(isOne(L)){
+        P = firstMhs(L);
+        firstMhs(L) = NULL;
+    }else{
+        prec = firstMhs(L);
+        while(nextMhs(nextMhs(prec)) != NULL){
+            prec = nextMhs(prec);
+        }
+        P = nextMhs(prec);
+        nextMhs(prec) = NULL;
+    }
+}
