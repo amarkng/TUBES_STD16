@@ -261,11 +261,12 @@ bool searchChildOnParent(listMhs &L, listSts &LS, string lulus, string bermasala
     return kondisi;
 }
 
-void deleteChildonParent(listMhs &L, listSts &LS, adrSts &P, string namaMhs){
+void deleteChildonParent(listMhs &L, string namaMhs){
     adrMhs Q = searchParent(L, namaMhs);
-    adrSts prec;
     if(isEmpty(L)){
         cout<<"List kosong!"<<endl;
+    }else if(Q == NULL){
+        cout<<"Data tidak ditemukan"<<endl;
     }else{
         if(child(Q) != NULL){
             child(Q) = NULL;
