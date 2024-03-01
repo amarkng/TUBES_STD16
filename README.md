@@ -1,3 +1,3 @@
 # TUBES_STD16
-Tubess MLL
+This is final project for Data Structure Course, it's Multi Linked List student graduation
 
